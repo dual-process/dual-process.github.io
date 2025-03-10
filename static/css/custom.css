@@ -70,19 +70,17 @@ select:focus {
   box-shadow: none;
 }
 
-.legend {
-  margin-bottom:10px; 
-  max-width: min(60vw, 300px);
+.serif-header {
+  font-family: 'Instrument Serif', serif;
+  letter-spacing: 0.03em;
 }
 
-.task-examples {
-  max-height: 75vh;
-  overflow-x: auto;
-  overflow-y: auto;
-}
-
-.task-examples img {
-  width: 50px;
+.external-link {
+  background-color: #36454F;
+  color: white;
+  margin: 6px;
+  border-radius: 8px;
+  box-shadow: 3px 3px 0px black;
 }
 
 .row-content {

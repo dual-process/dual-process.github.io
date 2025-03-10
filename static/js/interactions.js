@@ -25,18 +25,22 @@ function changeVideo(id) {
   video.load();
 }
 
-function showTaskRow(id) {
-  var selectParent = document.getElementById('select-' + id);
+function changeImage(id) {
+  const selectParent = document.getElementById('select-' + id);
   if (selectParent === null) {
-    return ;
+      return ;
   }
-  let task = selectParent.getElementsByTagName('select')[0].selectedOptions[0];
-  task = task.textContent.trim().toLowerCase();
-  var rows = document.getElementsByTagName('tr');
-  for (var i = 0; i < rows.length; i++) {
-    if (rows[i].id !== "header") {
-      rows[i].style.display = "none";
-    }
-  }
-  document.getElementById(task).style.display = "table-row";
+  let path0 = selectParent.getElementsByTagName('select')[0].selectedOptions[0].id;
+  let path1 = selectParent.getElementsByTagName('select')[1].selectedOptions[0].id;
+
+  const image = document.getElementById(id);
+  const imageSrc = image.src;
+  const imagePath = imageSrc.split("/");
+  let newImagePath = imagePath.slice(0, -1).join("/") + "/";
+
+  console.log(image);
+  console.log(imageSrc);
+
+  newImagePath += path0 + "_" + path1 + ".png";
+  image.src = newImagePath;
 }
