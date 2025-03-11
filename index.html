@@ -55,15 +55,19 @@
               <a href="https://granskog.xyz" target="_blank">Jonathan Granskog</a><sup>2</sup>
             </span>
             <span class="author-block">
-              <a href="https://holynski.org" target="_blank">Aleksander Holynski</a><sup>1</sup>
+              <a href="https://holynski.org" target="_blank">Aleksander Holynski*</a><sup>1</sup>
             </span>
             <span class="author-block">
-              <a href="http://people.eecs.berkeley.edu/~trevor" target="_blank">Trevor Darrell</a><sup>1</sup>
+              <a href="http://people.eecs.berkeley.edu/~trevor" target="_blank">Trevor Darrell*</a><sup>1</sup>
             </span>          
           </div>
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>UC Berkeley</span>
             <span class="author-block"><sup>2</sup>Runway</span>
+          </div>
+          <br>
+          <div>
+            <span class="uthor-block"><sup>*</sup>Equal advising contribution</span>
           </div>
 
           <br>
@@ -93,6 +97,7 @@
   </div>
 </section>
 
+<!-- Abstract -->
 <section class="section" style="padding-top: 1rem;">
   <div class="container is-max-desktop">
     <div class="is-centered has-text-centered">
@@ -113,7 +118,9 @@
     </div>
   </div>
 </section>
+<!-- Abstract -->
 
+<!-- Method -->
 <hr>
 <section class="section">
   <div class="container is-max-desktop">
@@ -158,6 +165,7 @@
     </div>
   </div>
 </section>
+<!-- Method -->
 
 <!-- Commonsense -->
 <hr>
@@ -173,9 +181,9 @@
             <span>
               Method:
               <select onchange="changeImage('ct2i')">
-                <option id="ours">Ours (Automatic Questions)</option>
-                <option id="expanded">Expanded Prompt</option>
-                <option id="base">Base Prompt</option>
+                <option id="ours">Ours</option>
+                <option id="expanded">Prompt Expansion</option>
+                <option id="base">Vanilla Prompt</option>
               </select>
             </span>
             <span>
@@ -199,8 +207,11 @@
           <br>
           <div class="content has-text-left">
             <p>
-              When the base prompt fails, prompt expansion can be unhelpful. 
-              Our method, which uses an automatically generated question to verify the inference, can be applied on top of prompting to fix these cases.
+              We evaluate our method on <a href="https://zeyofu.github.io/CommonsenseT2I" target="_blank">CommonsenseT2I</a>, 
+              a benchmark for evaluating commonsense understanding of physical laws, biological laws, and more.
+              We compare against vanilla prompting and prompt expansion.
+              For each example, we show an automatically generated question used by our method to verify an inference, as well as the image it generated.
+              For prompt expansion we show the abridged prompt, and for vanilla prompting we show the full prompt.
             </p>
           </div>
         </div>
@@ -210,25 +221,334 @@
 </section>
 <!-- Commonsense -->
 
+<!-- Color Palette -->
+<hr>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="max-width-content">
+          <h2 class="title is-3 is-centered has-text-centered serif-header">
+            Color Palette
+          </h2>
+          <div id="select-palette" class="select-row">
+            <span>
+              Method:
+              <select onchange="changeVisualPrompt('palette')">
+                <option id="ours">Ours</option>
+                <option id="base">No Control</option>
+              </select>
+            </span>
+            <span>
+              Example:
+              <select onchange="changeVisualPrompt('palette')">
+                <option id="dark-academia">dark-academia</option>
+                <option id="pastel">pastel</option>
+                <option id="retro">retro</option>
+              </select>
+            </span>
+          </div>
+          <div style="padding-top: 5px; color: #C7C7C7;">
+            <img style="width: 20px; margin-top: -3px;" src="assets/info.svg" />
+            Click the underlined text for dropdown menu
+          </div>
+          <br>
+          <div class="columns is-centered">
+            <div class="column is-two-thirds has-text-centered" style="display: flex; align-items: flex-end;">
+              <img id="palette0" src="assets/palette/palette_dark-academia.png">
+            </div>
+            <div class="column is-one-third has-text-centered" style="display: flex; align-items: flex-end;">
+              <img id="palette1" src="assets/palette/ours_dark-academia.png">
+            </div>
+          </div>
+          <br>
+          <div class="content has-text-left">
+            <p>
+              While the base image generators cannot be natively instructed with color palettes, our method can implement this control as a visual prompt. 
+              We simply overlay the palette at the bottom of the generated image and ask the VLM if the colors match.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Color Palette -->
+
+<!-- Line Weight -->
+<hr>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="max-width-content">
+          <h2 class="title is-3 is-centered has-text-centered serif-header">
+            Line Weight
+          </h2>
+          <div id="select-lineweight" class="select-row">
+            <span>
+              Method:
+              <select onchange="changeVisualPrompt('lineweight')">
+                <option id="ours">Ours</option>
+                <option id="base">No Control</option>
+              </select>
+            </span>
+            <span>
+              Example:
+              <select onchange="changeVisualPrompt('lineweight')">
+                <option id="thin">thin</option>
+                <option id="thick">thick</option>
+              </select>
+            </span>
+          </div>
+          <div style="padding-top: 5px; color: #C7C7C7;">
+            <img style="width: 20px; margin-top: -3px;" src="assets/info.svg" />
+            Click the underlined text for dropdown menu
+          </div>
+          <br>
+          <div class="columns is-centered">
+            <div class="column is-two-thirds has-text-centered" style="display: flex; align-items: flex-end;">
+              <img id="lineweight0" src="assets/lineweight/lineweight_thin.png">
+            </div>
+            <div class="column is-one-third has-text-centered" style="display: flex; align-items: flex-end;">
+              <img id="lineweight1" src="assets/lineweight/ours_thin.png">
+            </div>
+          </div>
+          <br>
+          <div class="content has-text-left">
+            <p>
+              We use red lines to represent the desired line weight of a cartoon, through the thickness of the line.
+              Through visual prompting, we can create visual abstractions and bind different meanings based on the question.
+              Here we use red lines to represent line weight, and in the next example we use them to represent horizon position.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Line Weight-->
+
+<!-- Horizon Position -->
+<hr>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="max-width-content">
+          <h2 class="title is-3 is-centered has-text-centered serif-header">
+            Horizon Position
+          </h2>
+          <div id="select-horizon" class="select-row">
+            <span>
+              Method:
+              <select onchange="changeVisualPrompt('horizon')">
+                <option id="ours">Ours</option>
+                <option id="base">No Control</option>
+              </select>
+            </span>
+            <span>
+              Example:
+              <select onchange="changeVisualPromptOverlay('horizon')">
+                <option id="low">low</option>
+                <option id="middle">middle</option>
+                <option id="high">high</option>
+              </select>
+            </span>
+            <span>
+              Overlay?
+              <select onchange="changeVisualPromptOverlay('horizon')">
+                <option id="yes">Yes</option>
+                <option id="no">No</option>
+              </select>
+            </span>
+          </div>
+          <div style="padding-top: 5px; color: #C7C7C7;">
+            <img style="width: 20px; margin-top: -3px;" src="assets/info.svg" />
+            Click the underlined text for dropdown menu
+          </div>
+          <br>
+          <div class="columns is-centered">
+            <div class="column is-two-thirds has-text-centered" style="display: flex; align-items: flex-end;">
+              <img id="horizon0" src="assets/horizon/horizon_low.png">
+            </div>
+            <div class="column is-one-third has-text-centered" style="display: flex; align-items: flex-end;">
+              <div style="position: relative;">
+                <img id="horizon1" src="assets/horizon/ours_low.png" style="position: relative; z-index: 1;">
+                <img id="horizon2" src="assets/horizon/overlay_low.png" style="position: absolute; top: 0; left: 0; z-index: 2;">
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="content has-text-left">
+            <p>
+              Here red lines are used to specify the horizon position, or the boundary at which the earth and sky meet.
+              You can toggle the visibility of the overlay, which is also fed to the VLM for visual prompting.
+              These examples make it clear why overlaying the image instruction is helpful; 
+              one can check the spatial alignment simply by assessing the distance between the actual horizon and the red line.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Horizon Position -->
+
+<!-- Relative Depth -->
+<hr>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="max-width-content">
+          <h2 class="title is-3 is-centered has-text-centered serif-header">
+            Relative Depth
+          </h2>
+          <div id="select-reldepth" class="select-row">
+            <span>
+              Method:
+              <select onchange="changeVisualPrompt('reldepth')">
+                <option id="ours">Ours</option>
+                <option id="base">No Control</option>
+              </select>
+            </span>
+            <span>
+              Example:
+              <select onchange="changeVisualPromptOverlay('reldepth')">
+                <option id="background">background</option>
+                <option id="foreground">foreground</option>
+                <option id="closer">closer</option>
+              </select>
+            </span>
+            <span>
+              Overlay?
+              <select onchange="changeVisualPromptOverlay('reldepth')">
+                <option id="yes">Yes</option>
+                <option id="no">No</option>
+              </select>
+            </span>
+          </div>
+          <div style="padding-top: 5px; color: #C7C7C7;">
+            <img style="width: 20px; margin-top: -3px;" src="assets/info.svg" />
+            Click the underlined text for dropdown menu
+          </div>
+          <br>
+          <div class="columns is-centered">
+            <div class="column is-two-thirds has-text-centered" style="display: flex; align-items: flex-end;">
+              <img id="reldepth0" src="assets/reldepth/reldepth_background.png">
+            </div>
+            <div class="column is-one-third has-text-centered" style="display: flex; align-items: flex-end;">
+              <div style="position: relative;">
+                <img id="reldepth1" src="assets/reldepth/ours_background.png" style="position: relative; z-index: 1;">
+                <img id="reldepth2" src="assets/reldepth/overlay_background.png" style="position: absolute; top: 0; left: 0; z-index: 2;">
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="content has-text-left">
+            <p>
+              We use two red points with labels to specify relative depth ordering.
+              Our method is able to follow truly multimodal instructions, where the VLM needs to distinguish 
+              between the two points by associating the red labels on the image instruction and the references to the labels in the question.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Relative Depth -->
+
+<!-- Visual Composition -->
+<hr>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="max-width-content">
+          <h2 class="title is-3 is-centered has-text-centered serif-header">
+            Visual Composition
+          </h2>
+          <div id="select-mondrian" class="select-row">
+            <span>
+              Method:
+              <select onchange="changeVisualPrompt('mondrian')">
+                <option id="ours">Ours</option>
+                <option id="base">No Control</option>
+              </select>
+            </span>
+            <span>
+              Example:
+              <select onchange="changeVisualPromptOverlay('mondrian')">
+                <option id="vertical">vertical-line</option>
+                <option id="box">box-region</option>
+              </select>
+            </span>
+            <span>
+              Overlay?
+              <select onchange="changeVisualPromptOverlay('mondrian')">
+                <option id="yes">Yes</option>
+                <option id="no">No</option>
+              </select>
+            </span>
+          </div>
+          <div style="padding-top: 5px; color: #C7C7C7;">
+            <img style="width: 20px; margin-top: -3px;" src="assets/info.svg" />
+            Click the underlined text for dropdown menu
+          </div>
+          <br>
+          <div class="columns is-centered">
+            <div class="column is-two-thirds has-text-centered" style="display: flex; align-items: flex-end;">
+              <img id="mondrian0" src="assets/mondrian/mondrian_vertical.png">
+            </div>
+            <div class="column is-one-third has-text-centered" style="display: flex; align-items: flex-end;">
+              <div style="position: relative;">
+                <img id="mondrian1" src="assets/mondrian/ours_vertical.png" style="position: relative; z-index: 1;">
+                <img id="mondrian2" src="assets/mondrian/overlay_vertical.png" style="position: absolute; top: 0; left: 0; z-index: 2;">
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="content has-text-left">
+            <p>
+              We use abstract paintings from Piet Mondrian 
+              [<a href="https://en.wikipedia.org/wiki/Composition_with_Red,_Blue_and_Yellow" target="_blank">1</a>, 
+              <a href="https://commons.wikimedia.org/wiki/File:%27Composition%27_by_Piet_Mondrian,_1929,_Solomon_R._Guggenheim_Museum.JPG" target="_blank">2</a>] 
+              to control visual composition.
+              We also annotate additional instructions for how to interpret the painting in red.
+              Mondrian's paintings can be interpreted as highly abstracted Dutch landscapes, with elements like trees and the horizon reduced to vertical and horizontal lines.
+              Our method can be used to perform the inverse problem and produce images that match the structure of these paintings.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Visual Composition -->
+
+<!-- Acknowledgements and Citation -->
 <hr>
 <section class="section">
   <div class="container is-max-desktop content">
     <h2 class="title is-3 serif-header">Acknowledgements</h2>
     <p>
       We would like to thank Anastasis Germanidis, Yining Shi, Alexander Pan, Chung Min Kim, Boyi Li, and David Chan for helpful discussions and feedback.
-      We would also like to thank the folks at Stochastic Labs, especially Vero Bollow and Joel Simon, for previewing early prototypes of this work.
+      We would also like to thank the folks at Stochastic Labs, especially Vero Bollow, Alexander Reben, Joel Simon, for previewing early prototypes of this work.
     </p>
     <h2 class="title is-3 serif-header">BibTeX</h2>
     <pre><code>
-      @article{luo2025dualprocess,
-        title={Dual-Process Image Generation},
-        author={Grace Luo and Jonathan Granskog and Aleksander Holynski and Trevor Darrell},
-        journal={arXiv preprint},
-        year={2025}
-      }
+    @article{luo2025dualprocess,
+      title={Dual-Process Image Generation},
+      author={Grace Luo and Jonathan Granskog and Aleksander Holynski and Trevor Darrell},
+      journal={arXiv preprint},
+      year={2025}
+    }
     </code></pre>
   </div>
 </section>
+<!-- Acknowledgements and Citation -->
 
 <footer class="footer">
   <div class="container">
