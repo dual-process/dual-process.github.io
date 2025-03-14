@@ -142,7 +142,7 @@
   </div>
 </section>
 
-
+<!-- Method -->
 <hr>
 <section class="section">
   <div class="container is-max-desktop">
@@ -166,6 +166,30 @@
   </div>
 </section>
 <!-- Method -->
+
+<!-- Visual Prompt -->
+<hr>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 serif-header">Visual Prompting</h2>
+        <br>
+        <div class="max-width-content">
+          <img src="assets/visual_prompt.png" />
+        </div>
+        <br>
+        <div class="content has-text-left">
+          <p>
+            VLMs can not only be prompted with text but also <a href="https://vip-llava.github.io" target="_blank">visual prompts</a>, or
+            multimodal instructions jointly defined in image and text. We simply overlay the image instruction on top of the generated image. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Visual Prompt -->
 
 <!-- Commonsense -->
 <hr>
@@ -208,10 +232,9 @@
           <div class="content has-text-left">
             <p>
               We evaluate our method on <a href="https://zeyofu.github.io/CommonsenseT2I" target="_blank">CommonsenseT2I</a>, 
-              a benchmark for evaluating commonsense understanding of physical laws, biological laws, and more.
-              We compare against vanilla prompting and prompt expansion.
+              a benchmark for commonsense understanding.
               For each example, we show an automatically generated question used by our method to verify an inference, as well as the image it generated.
-              For prompt expansion we show the abridged prompt, and for vanilla prompting we show the full prompt.
+              We also compare against prompt expansion and vanilla prompting.
             </p>
           </div>
         </div>
